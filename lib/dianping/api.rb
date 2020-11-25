@@ -1,7 +1,10 @@
 require "dianping/api/version"
+require 'faraday'
 
 module Dianping
   module Api
+    class TokenExpireError < Faraday::RetriableResponse; end
+    class TokenMissingError < StandardError; end
     class UsageError < StandardError; end
     class Error < StandardError; end
 

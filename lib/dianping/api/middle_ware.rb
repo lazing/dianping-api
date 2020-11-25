@@ -16,10 +16,11 @@ module Dianping
       end
 
       def check_session(_env)
-        return unless client.token.expire?
+        raise TokenMissingError unless @client.token.authorized?
+        return unless @client.token.expired?
 
-        client.token.refresh
-        raise 'token expires'
+        @client.token.refresh
+        raise TokenExpireError
       end
 
       def check_response(env)

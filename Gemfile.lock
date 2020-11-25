@@ -2,7 +2,7 @@ PATH
   remote: .
   specs:
     dianping-api (0.1.0)
-      faraday
+      faraday (~> 1.0)
       multi_json
 
 GEM

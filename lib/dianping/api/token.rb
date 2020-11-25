@@ -21,17 +21,18 @@ module Dianping
       end
 
       def refresh
-        raise 'no_refresh_token' unless refresh_token && remain_refresh_count > 1
+        raise Error, 'no refresh_token' unless refresh_token && remain_refresh_count > 1
 
         save_token(client.refresh_token(@access_hash[:refresh_token]))
       end
 
       def auth(authcode)
-        save_token(client.auth(authcode))
+        save_token(client.auth_token(authcode))
       end
 
       def save_token(token)
-        json = MultiJson.dump(access_hash: { updated_at: Time.now }.merge(token))
+        token = { updated_at: Time.now.to_s }.merge(token)
+        json = MultiJson.dump(access_hash: token )
         File.open(@token_file, 'w') { |f| f.write(json) }
         @access_hash = token
       end
