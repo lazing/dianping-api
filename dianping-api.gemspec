@@ -10,7 +10,7 @@ Gem::Specification.new do |spec|
   spec.email         = ["lazing@gmail.com"]
 
   spec.summary       = %q{dianping api client}
-  spec.description   = %q{dianping api client}
+  spec.description   = %q{dianping api client for simple request signature}
   spec.homepage      = "https://github.com/lazing/dianping-api"
   spec.license       = "MIT"
 
@@ -37,14 +37,14 @@ Gem::Specification.new do |spec|
   spec.require_paths = ["lib"]
 
   spec.add_dependency 'faraday', '~> 1.0'
-  spec.add_dependency 'multi_json', '>= 1.0'
+  spec.add_dependency 'multi_json', '~> 1.0'
 
   spec.add_development_dependency "bundler", "~> 1.17"
-  spec.add_development_dependency "guard", ">= 2.0"
-  spec.add_development_dependency "guard-rspec", ">= 4.0"
+  spec.add_development_dependency "guard", "~> 2.0"
+  spec.add_development_dependency "guard-rspec", "~> 4.0"
   spec.add_development_dependency "rake", "~> 10.0"
-  spec.add_development_dependency "rspec", ">= 3.0"
-  spec.add_development_dependency "rspec-its", ">= 1.0"
-  spec.add_development_dependency 'webmock', ">= 3.0"
+  spec.add_development_dependency "rspec", "~> 3.0"
+  spec.add_development_dependency "rspec-its", "~> 1.0"
+  spec.add_development_dependency 'webmock', "~> 3.0"
   
 end
