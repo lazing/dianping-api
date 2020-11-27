@@ -4,6 +4,8 @@ module Dianping
   module Api
     class Client
 
+      include Modules::Tuangou
+
       attr_reader :app_key, :site, :token, :redirect_url
 
       def initialize(app_key, secret, **options)

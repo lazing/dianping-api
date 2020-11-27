@@ -3,7 +3,7 @@ PATH
   specs:
     dianping-api (0.1.0)
       faraday (~> 1.0)
-      multi_json (>= 1.0)
+      multi_json (~> 1.0)
 
 GEM
   remote: https://rubygems.org/
@@ -82,12 +82,12 @@ PLATFORMS
 DEPENDENCIES
   bundler (~> 1.17)
   dianping-api!
-  guard (>= 2.0)
-  guard-rspec (>= 4.0)
+  guard (~> 2.0)
+  guard-rspec (~> 4.0)
   rake (~> 10.0)
-  rspec (>= 3.0)
-  rspec-its (>= 1.0)
-  webmock (>= 3.0)
+  rspec (~> 3.0)
+  rspec-its (~> 1.0)
+  webmock (~> 3.0)
 
 BUNDLED WITH
    1.17.3
