@@ -94,7 +94,8 @@ module Dianping
         merged = share_params.merge(params || {}).dup
         content = merged.to_a.sort.flatten.join.encode!('UTF-8')
         # puts @secret + content
-        sign = Digest::MD5.hexdigest(@secret + content + @secret)
+        Api.logger.debug { format('content: %s', content) }
+        sign = Digest::MD5.hexdigest([@secret, content, @secret].compact.join)
         merged.merge(sign: sign)
       end
     end

@@ -1,12 +1,21 @@
 require 'dianping/api/version'
 require 'faraday'
+require 'logger'
 
 module Dianping
   module Api
     class TokenExpireError < Faraday::RetriableResponse; end
-    class TokenMissingError < StandardError; end
-    class UsageError < StandardError; end
     class Error < StandardError; end
+    class TokenMissingError < Error; end
+    class UsageError < Error; end
+
+    def self.logger
+      @@logger ||= defined?(Rails) ? Rails.logger : ::Logger.new(STDOUT)
+    end
+  
+    def self.logger=(logger)
+      @@logger = logger
+    end
 
     module Modules; end
   end

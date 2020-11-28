@@ -9,9 +9,11 @@ module Dianping
       end
 
       def call(env)
+        Api.logger.debug { { request: env } }
         check_session(env)
         @app.call(env).on_complete do |response_env|
-          hash = MultiJson.load response_env.body, symbolized_keys: true
+          Api.logger.debug { { response: response_env } }
+          hash = MultiJson.load response_env.body, symbolize_keys: true
           check_response(hash)
         end
       end
@@ -27,6 +29,8 @@ module Dianping
       def check_response(body)
         code = body[:code].to_i
         msg = format('[%<code>d]%<msg>s', code: code, msg: body[:msg])
+
+        Api.logger.debug { { response: body, msg: msg } }
 
         raise TokenExpireError, msg if code == 608
         raise UsageError, msg if code >= 800
