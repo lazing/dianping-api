@@ -1,8 +1,6 @@
 # Dianping::Api
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/dianping/api`. To experiment with that code, run `bin/console` for an interactive prompt.
-
-TODO: Delete this and the text above, and describe your gem
+美团点评北极星平台Open API SDK for Ruby
 
 ## Installation
 
@@ -22,7 +20,17 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+```ruby
+
+注册 https://open.dianping.com 按开发测试说明使用
+
+# redirect_url 专门给获取access_token (session)使用
+client = Dianping::Api::Client.new 'app_key', 'app_secrent', redirect_url: 'https://example.org/callback'
+
+# 公共请求参数会自动提供并签名
+# 正常结果 `code 200` 以外的返回报文会抛出异常
+body_json = client.post '/routers/xxxx', biz_key1: 1, biz_key2: 2 
+body_json = client.get '/routers/xxxx', url_key1: 1, url_key2: 2 
 
 ## Development
 
