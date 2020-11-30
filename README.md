@@ -32,6 +32,8 @@ client = Dianping::Api::Client.new 'app_key', 'app_secrent', redirect_url: 'http
 body_json = client.post '/routers/xxxx', biz_key1: 1, biz_key2: 2 
 body_json = client.get '/routers/xxxx', url_key1: 1, url_key2: 2 
 
+```
+
 ## Development
 
 After checking out the repo, run `bin/setup` to install dependencies. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
