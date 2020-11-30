@@ -20,9 +20,9 @@ Or install it yourself as:
 
 ## Usage
 
-```ruby
-
 注册 https://open.dianping.com 按开发测试说明使用
+
+```ruby
 
 # redirect_url 专门给获取access_token (session)使用
 client = Dianping::Api::Client.new 'app_key', 'app_secrent', redirect_url: 'https://example.org/callback'
