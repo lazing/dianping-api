@@ -54,7 +54,7 @@ module Dianping
       end
 
       def expires_at
-        updated_at + expires_in
+        updated_at + expires_in rescue nil
       end
 
       def expired?

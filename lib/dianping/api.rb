@@ -17,6 +17,12 @@ module Dianping
       @@logger = logger
     end
 
+    def self.client
+      return @client = yield(Client) if block_given?
+
+      @client || raise(::Dianping::Api::Error, 'initialize client with block first')
+    end
+
     module Modules; end
   end
 end
