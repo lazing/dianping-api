@@ -7,7 +7,7 @@ module Dianping
 
       def initialize(client)
         @client = client
-        @token_file = File.join('/tmp', "dianping-api-#{client.app_key}")
+        @token_file = File.join(ENV['TOKEN_ROOT'] || '/tmp', "dianping-api-#{client.app_key}")
       end
 
       def access_hash
