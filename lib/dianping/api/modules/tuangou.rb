@@ -14,6 +14,10 @@ module Dianping
 
           post '/router/tuangou/receipt/consume', params
         end
+
+        def shop_deals(shop_deals)
+          get('/tuangou/deal/queryshopdeal', open_shop_uuid: shop_deals)
+        end
       end
     end
   end

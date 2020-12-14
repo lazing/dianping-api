@@ -76,6 +76,10 @@ module Dianping
         json(res.body)
       end
 
+      def scope_shops
+        get('/router/oauth/session/scope', bid: token.bid)
+      end
+
       def json(text)
         MultiJson.load(text || '{}', symbolize_keys: true)
       end

@@ -49,6 +49,10 @@ module Dianping
         access_hash[:expires_in]
       end
 
+      def bid
+        access_hash[:bid]
+      end
+
       def updated_at
         Time.parse(access_hash[:updated_at])
       end
