@@ -32,6 +32,8 @@ module Dianping
 
         Api.logger.debug { { response: body, msg: msg } }
 
+        Api.logger.warn body unless code == 200
+
         raise TokenExpireError, msg if code == 608
         raise UsageError, msg if code >= 800
         raise Error, msg unless code == 200
