@@ -1,4 +1,5 @@
 require 'faraday'
+require 'securerandom'
 
 module Dianping
   module Api
@@ -84,6 +85,10 @@ module Dianping
         MultiJson.load(text || '{}', symbolize_keys: true)
       end
 
+      def requestid
+        SecureRandom.hex
+      end
+
       def share_params
         {
           app_key: app_key,
@@ -96,12 +101,16 @@ module Dianping
       end
 
       def sign_with_share(params = {})
-        merged = share_params.merge(params || {}).dup
+        merged = merge_params(params)
         content = merged.to_a.sort.flatten.join.encode!('UTF-8')
         # puts @secret + content
         Api.logger.debug { format('content: %s', content) }
         sign = Digest::MD5.hexdigest([@secret, content, @secret].compact.join)
         merged.merge(sign: sign)
+      end
+
+      def merge_params(params)
+        share_params.merge(params || {}).dup.reject { |_k, v| v.nil? }
       end
     end
   end
