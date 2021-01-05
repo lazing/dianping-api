@@ -9,8 +9,10 @@ module Dianping
         def receipt_consume(shop_uuid, code, request_id, count = 1, **params)
           params.merge! open_shop_uuid: shop_uuid,
                         receipt_code: code,
-                        request_id: request_id,
+                        requestid: request_id,
                         count: count
+          keys = %i[requestid receipt_code count open_shop_uuid app_shop_account app_shop_accountname]
+          raise "missing keys #{keys - params.keys}" unless (keys - params.keys).empty?
 
           post '/router/tuangou/receipt/consume', params
         end

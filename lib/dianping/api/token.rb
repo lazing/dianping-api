@@ -54,7 +54,7 @@ module Dianping
       end
 
       def updated_at
-        Time.parse(access_hash[:updated_at])
+        DateTime.parse(access_hash[:updated_at]).to_time
       end
 
       def expires_at
