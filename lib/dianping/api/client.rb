@@ -7,7 +7,7 @@ module Dianping
 
       include Modules::Tuangou
 
-      attr_reader :app_key, :site, :token
+      attr_reader :app_key, :site, :token, :token_root
       attr_accessor :redirect_url
 
       def initialize(app_key, secret, **options)
@@ -15,6 +15,7 @@ module Dianping
         @secret = secret
         @site = options[:site] || 'https://openapi.dianping.com'
         @redirect_url = options[:redirect_url]
+        @token_root = options[:token_root] || '/tmp'
         @token = Token.new(self)
       end
 
