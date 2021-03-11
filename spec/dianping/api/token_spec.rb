@@ -7,6 +7,7 @@ module Dianping::Api
 
     subject do
       allow(client).to receive(:app_key) { 'app_key' }
+      allow(client).to receive(:token_root) { nil }
       Token.new(client)
     end
 

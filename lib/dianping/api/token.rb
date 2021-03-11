@@ -7,20 +7,24 @@ module Dianping
 
       def initialize(client)
         @client = client
-        @token_file = File.join(client.token_root|| '/tmp', "dianping-api-#{client.app_key}")
+        @token_file = File.join(client.token_root || 'tmp', "dianping-api-#{client.app_key}")
       end
 
       def access_hash
-        @access_hash ||=
-          begin
-            token = MultiJson.load(File.read(@token_file), symbolize_keys: true)
-            token[:access_hash] || (raise 'empty token')
-          rescue Errno::ENOENT
-            {}
-          end
+        @access_hash ||= load_token
+      end
+
+      def load_token
+        token = MultiJson.load(File.read(@token_file), symbolize_keys: true)
+        token[:access_hash] || (raise 'empty token')
+      rescue Errno::ENOENT
+        {}
       end
 
       def refresh
+        @access_hash = load_token # try to use shared token first
+        return unless expired?
+
         raise Error, 'no refresh_token' unless refresh_token && remain_refresh_count > 1
 
         save_token(client.refresh_token(@access_hash[:refresh_token]))
