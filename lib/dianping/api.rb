@@ -10,11 +10,11 @@ module Dianping
     class UsageError < Error; end
 
     def self.logger
-      @@logger ||= defined?(Rails) ? Rails.logger : ::Logger.new(STDOUT)
+      @logger ||= defined?(Rails) ? Rails.logger : ::Logger.new(STDOUT)
     end
 
     def self.logger=(logger)
-      @@logger = logger
+      @logger = logger
     end
 
     def self.client
